@@ -107,14 +107,16 @@ CSS 偏移反爬虫指的是利用 CSS 样式将乱序的文字排版为正常�
 
 ##### 绕过
 [获取机票价格案例](https://github.com/zlj-zz/anti-crawl_case/tree/master/css_offset) 
-![css-caset](./css_offset/html/demo-img-1.png) <++>
+
+![css-caset](./css_offset/html/demo-img-1.png) 
 
 #### SVG 映射反爬虫
 SVG 是用于描述二位矢量图形的一种图形格式.它基于 xml 描述图形,对图形进行缩放操作都不会i影响图形质量,这个特性导致矢量图被广泛应用与 web 网站中.
 
 ##### 绕过
 [爬取联系电话案例](https://github.com/zlj-zz/anti-crawl_case/tree/master/SVG_map) 
-![SVG_map](./image/SVG-case.png) 
+
+![SVG-map](./image/SVG-case.png) 
 #### 字体反爬虫
 
 #### 文本混淆反爬虫通用解决方法
@@ -143,7 +145,7 @@ SVG 是用于描述二位矢量图形的一种图形格式.它基于 xml 描述�
 
 ##### 绕过
 
-[calculation_vrify](https://github.com/zlj-zz/anti-crawl_case/tree/master/calculation_vrify) 
+[calculation-vrify](https://github.com/zlj-zz/anti-crawl_case/tree/master/calculation_vrify) 
 
 Calculation validation bypas case.
 
@@ -162,7 +164,7 @@ pip install pytesseract
 
 ##### 绕过
 
-[slide_verify](https://github.com/zlj-zz/anti-crawl_case/tree/master/slide_vrify) 
+[slide-verify](https://github.com/zlj-zz/anti-crawl_case/tree/master/slide_vrify) 
 
     Slider validation bypass case.
 
