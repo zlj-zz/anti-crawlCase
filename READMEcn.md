@@ -118,8 +118,19 @@ SVG 是用于描述二位矢量图形的一种图形格式.它基于 xml 描述�
 
 ![SVG-map](./image/SVG-case.png) 
 #### 字体反爬虫
+以前 web 开发者不惜使用用户计算机上存在的字体,但在 CSS3 时代,开发者可以使用 `@font-face` 为网页指定字体.开发者可以将字体放在 web 服务器上,并在 CSS 样式中使用它.
+
+这种情况下查看源码,会发现一些无法识别的字符,这是 WOFF (Web Open Font Format) 一种网页采用的字体格式标准.我们可以借助 Python 的第三方库 fonttools 将 WOFF 转换成 XML ,这样就可以查看文字的结构和表信息了.安装 fonttools 库:
+```shell
+pip install fonttools
+```
+XML 文件中保存的是字形坐标信息,我们无法直接获取结果.可以使用在线字体编辑器查看.
+
+##### 绕过
+[字体反爬虫案例](https://github.com/zlj-zz/anti-crawl_case/tree/master/font_anti-crawl) 
 
 #### 文本混淆反爬虫通用解决方法
+当我们面对不同文本文本混淆反爬虫时,需要重新分析.如果每一次都要分析,那么开发者会付出很多时间成本.这时我们可以使用光学字符识别 OCR 来帮我们解决文本混淆问题.
 
 ---
 
@@ -156,8 +167,6 @@ sudo apt install libtesseract-dev --fix-missing
 
 pip install pytesseract
 ```
-
-
 
 #### 滑动验证码
 开发者试图通过从行为方面区分人机.我们认为计算机难于i准确的完成鼠标点击,拖拽,释放等行为,于是开发了滑动验证码.
