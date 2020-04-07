@@ -135,10 +135,34 @@ XML 文件中保存的是字形坐标信息,我们无法直接获取结果.可�
 ---
 
 # 特征识别反爬虫
+特征识别反爬虫是指通过客户端的特征,属性或用户行为特点来区分正常用户和爬虫程序的手段.
 
 #### WebDriver 识别
+前面了解到爬虫可以借助 web 渲染工具从动态网页中获取数据,其本质就是通过对应的浏览器驱动向浏览器发出行为指令.那么开发者可一根据客户端是否包含驱动这一特征来区分正常用户和爬虫.
+
+##### 绕过
+可以通过判断 `Navigator` 对象的 `webdriver` 属性来确认是否通过 WebDriver 驱动浏览器.
+
+**方法一:** `navigator.webdriver` 只适用于使用 WebDriver 的渲染工具,对于 Splash 这种使用 WebKit 内核开发的渲染工具无效.
+
+**方法二:** `navigator.webdriver` 属性是可以更改的,当我们使用 WebDriver 时, `navigator.webdriver` 返回值是 `true` 否则返回 `false` 或 `undefine`.可以通过在触发检测之前更改 `navigator.webdriver` 的值,来绕过检测.
+```python
+from selenium.webdriver import Chrome
+
+url = 'http://...'
+client = Chrome()
+client.get(url)
+# change property's js
+script = '''
+    Object.defineProperty(navigator, "webdriver", {get: () => false,});
+'''
+client.execute_script(script)
+    
+    ...
+```
 
 #### 浏览器特征
+判断客户端身份的除了 WebDriver ,还有客户端的操作系统信息和硬件信息等.开发者也可以使用这些特征作为区分条件.
 
 #### 爬虫特征
 
