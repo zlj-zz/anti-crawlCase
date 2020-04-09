@@ -185,8 +185,9 @@ client.execute_script(script)
 字符验证码是指用数字,字母和标点符号的字符作为元素的图片验证码.它将人类视觉和计算机视觉的差呀作为区分用户身份的依据.
 
 ###### 绕过
+![demo](./character_verify/image/demo.png) 
 
-[character_verify](<++>) <++>
+[character_verify](https://github.com/zlj-zz/anti-crawl_case/tree/master/character_verify) 使用 PyTesseract 光学图像识别,但其精确度有限.除此之外我们还可以使用深度学习的卷积神经网络训练图像识别模型,使用训练好的模型帮助我们识别,精确度通常高于 PyTesseract.
 
 #### 计算型验证码
 计算型验证码实在字符验证码的基础上增加了数学运算,它也是将人类视觉和计算机视觉的差异作为区分用户的依据.
