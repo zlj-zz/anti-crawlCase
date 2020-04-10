@@ -219,5 +219,10 @@ pip install pytesseract
     ```shell
     pip install selenium
     ```
+#### 滑动拼图验证码
+滑动拼图验证码在滑动验证码的基础上增加了随机移动,用户需要使用滑动的方式完成拼图,才能通过验证.
 
+#### 绕过
+
+[slide_jigsaw](https://github.com/zlj-zz/anti-crawl_case/tree/master/slide_jigsaw) 
 
