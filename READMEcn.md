@@ -226,3 +226,7 @@ pip install pytesseract
 
 [slide_jigsaw](https://github.com/zlj-zz/anti-crawl_case/tree/master/slide_jigsaw) 
 
+demo 1 的案例中,目标块使用单独的 div ,这样可以在源码中提取出来,计算获得移动距离.如果将缺口融入到背景之中,那么就可以给爬虫工程师增加难度.在 demo 2 中我们就实现的方式.面对这种情况我们可以使用截图的手段获取前后图片,通过对比获取缺口位置, PIL 库可以帮我们实现这一过程.
+
+
+
