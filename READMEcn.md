@@ -236,3 +236,38 @@ demo 1 的案例中,目标块使用单独的 div ,这样可以在源码中提取
 通过 demo 可以获取到要求点击的文字,接着就是识别图像中的文字进行点击.我们可以使用 OCR 光学检测,但实验证明准确率并不高,我们还有其他选择就是通过深度学习的目标检测来识别文字.
 
 #### 鼠标轨迹的检测和原理
+鼠标轨迹是鼠标移动的集合,它代表鼠标移动的位置和距离.尽管我们在移动鼠标是已经尽量避免手臂晃动,但还是避免不了细微的晃动.但是当我们使用 Selenium 完成点击事件时,其实只有一个坐标记录,这是由于 Selenium 的定位方式导致的,类似我们点击手机屏幕一样.这个时候开发者就可以根据这种人类使用鼠标是很难完全避免晃动的特点区分正常用户和爬虫程序.开发者可以使用 JavaScript 记录移动滑块时的鼠标坐标信息,然后检测晃动的偏差值(i.e 相邻 `y` 坐标的差值)完成对爬虫程序的检测.
+
+当然,我们也可以模拟晃动的现象,测试代码如下:
+```python
+from selenium import webdriver
+
+browser = webdriver.Chrome()
+
+url = 'http://www.porters.vip/captcha/mousemove.html'
+browser.get(url)
+
+hover = browser.find_element_by_class_name('button1')
+
+action = webdriver.ActionChains(browser)
+action.click_and_hold(hover).perform()
+action.move_by_offset(100, 3)
+action.move_by_offset(40, -5)
+action.move_by_offset(10, 3)
+action.move_by_offset(5, 2)
+action.move_by_offset(10, -1)
+action.move_by_offset(30, 3)
+action.move_by_offset(55, -2)
+action.move_by_offset(10, 1)
+action.move_by_offset(30, -6)
+action.move_by_offset(20, 4)
+action.move_by_offset(15, 2)
+action.move_by_offset(15, -7)
+action.release().perform()
+```
+
+运行结果:
+
+![mouse coordinate](./image/mouse-coordinate.png)
+    
+运行上面的代码,我们可以看到轨迹线路已经弯曲,但从坐标的记录可以看到远比人移动时产生的坐标数量少.开发者可以利用这一点,但移动的路线是无限的,怎么确定坐标数量呢?我们这里可以通过最短路径来解决,即两点之间一定存在一条最短路径,如果坐标数量少于最短路径的产生的坐标数量则视为爬虫程序.
