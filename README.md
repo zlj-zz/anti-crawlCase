@@ -196,6 +196,7 @@ uses PyTesseract optical image recognition, but its accuracy is limited. In addi
 The computational verification code adds mathematical operations to the character verification code.It is also based on the difference between human vision and computer vision as the basis for distinguishing users.
 
 ##### Bypass
+![calculation](./image/calculate.png)
 
 [calculation-vrify](https://github.com/zlj-zz/anti-crawl_case/tree/master/calculation_vrify)
 
@@ -213,6 +214,7 @@ pip install pytesseract
 Developers tried to distinguish human-machine by behavior. We think it is difficult for computers to accurately complete mouse clicks, drags, and releases, so we developed a sliding verification code.
 
 ##### Bypass
+![slide verification](./image/slide-verify.png) 
 
 [slide-verify](https://github.com/zlj-zz/anti-crawl_case/tree/master/slide_vrify)
 
@@ -233,6 +235,8 @@ In the case of demo 1, the target block uses a separate `div`, which can be extr
 
 #### Text click verification code
 Go through reading verification, go to click the corresponding text picture to complete verification, this is a harder verification code than sliding verification code.
+
+![word code](./image/word-code.png) 
 
 [get should click words](https://github.com/zlj-zz/anti-crawl_case/tree/master/word_click)
 
