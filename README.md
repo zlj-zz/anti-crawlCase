@@ -2,4 +2,4 @@
 
 Including text verification, dynamic rendering, text obfuscation, feature recognition, and verification code.
 
-Read the `docs` in detail
+Read the `docs` in detail, and code in `cases`.
