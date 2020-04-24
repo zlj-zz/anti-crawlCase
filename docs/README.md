@@ -43,7 +43,7 @@ Signature is the process of calculating or encrypting according to the data sour
 
 You can view the data parameters in `data` through network analysis, analyze the encryption process, and encrypt with the same encryption method to obtain the correct signature verification.
 
-Case: [Youdao Translation Verification](https://github.com/zlj-zz/python_/blob/master/anti-crawl_practice/youdao/youdao.py)
+Case: [Youdao Translation Verification](https://github.com/zlj-zz/Anti-crawlCase/blob/master/cases/youdao/youdao.py)
 
 Youdao web translation signature verifivation bypass case.
 
@@ -101,13 +101,13 @@ Text confusion anti-reptiles can effectively prevent crawlers from obtaining imp
 Picture disguise refers to mixing pictures with text and normal text together to achieve the effect of confusion. It does not affect the user's access to information, but it can prevent the crawler from getting real data.
 
 ##### Bypass
-[User Information Crawling Case](https://github.com/zlj-zz/anti-crawl_case/tree/master/picture_disguise)
+[User Information Crawling Case](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/pictureDisguise)
 
 #### CSS Offset Anti-Crawler
 CSS offset anti-reptile refers to the use of CSS styles to typeset out-of-order text into the order of normal human reading and understanding.
 
 ##### Bypass
-[Get air ticket price case](https://github.com/zlj-zz/anti-crawl_case/tree/master/css_offset)
+[Get air ticket price case](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/CSSOffset)
 
 ![css-caset](./image/cssDemo.png)
 
@@ -115,7 +115,7 @@ CSS offset anti-reptile refers to the use of CSS styles to typeset out-of-order 
 SVG is a graphic format used to describe two-bit vector graphics. It describes graphics based on xml, and scaling operations on the graphics will not affect the quality of the graphics. This feature causes vector graphics to be widely used in web sites.
 
 ##### Bypass
-[Crawl contact phone case](https://github.com/zlj-zz/anti-crawl_case/tree/master/SVG_map)
+[Crawl contact phone case](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/SVGmap)
 
 ![SVG-map](./image/SVG-case.png)
 #### Font anti-reptile
@@ -128,7 +128,7 @@ pip install fonttools
 The XML file contains the glyph coordinate information, we cannot directly obtain the results. You can use the online font editor to view.
 
 ##### Bypass
-[Font Anti-Crawler Case](https://github.com/zlj-zz/anti-crawl_case/tree/master/font_anti-crawl)
+[Font Anti-Crawler Case](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/fontAnti-crawl)
 
 #### General solution to text confusion anti-reptile
 When we are faced with different text and text confusion anti-reptiles, we need to re-analyze. If we have to analyze each time, then developers will pay a lot of time costs. At this time, we can use optical character recognition OCR to help us solve the text confusion problem.
@@ -188,7 +188,7 @@ Character verification code refers to the picture verification code that uses nu
 ###### Bypass
 ![demo](./image/charDemo.png)
 
-[character_verify](https://github.com/zlj-zz/anti-crawl_case/tree/master/character_verify)
+[character verify](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/characterVerify)
 
 uses PyTesseract optical image recognition, but its accuracy is limited. In addition, we can also use deep learning volumes The product neural network trains the image recognition model and uses the trained model to help us identify.The accuracy is usually higher than PyTesserct.
 
@@ -198,7 +198,7 @@ The computational verification code adds mathematical operations to the characte
 ##### Bypass
 ![calculation](./image/calculate.png)
 
-[calculation-vrify](https://github.com/zlj-zz/anti-crawl_case/tree/master/calculation_vrify)
+[calculation-vrify](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/calculationVrify)
 
 Calculation validation bypas case.
 
@@ -216,20 +216,20 @@ Developers tried to distinguish human-machine by behavior. We think it is diffic
 ##### Bypass
 ![slide verification](./image/slide-verify.png) 
 
-[slide-verify](https://github.com/zlj-zz/anti-crawl_case/tree/master/slide_vrify)
+[slide-verify](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/slideVrify)
 
     Slider validation bypass case.
 
     you should install `selenium`, like:
-    `` `shell
+    ```shell
     pip install selenium
-    `` `
+    ```
 #### Sliding puzzle verification code
 The sliding puzzle verification code adds random movement to the sliding verification code.The user needs to use the sliding method to complete the puzzle to pass the verification.
 
 #### Bypass
 
-[slide_jigsaw](https://github.com/zlj-zz/anti-crawl_case/tree/master/slide_jigsaw)
+[slide jigsaw](https://github.com/zlj-zz/Anti-crawlCase/tree/master/slideJigsaw)
 
 In the case of demo 1, the target block uses a separate `div`, which can be extracted from the source code and calculated to obtain the moving distance. If the gap is integrated into the background, then it can increase the difficulty for the crawler engineer. Implementation method. In this situation, we can use screenshots to obtain the front and rear pictures, and obtain the gap position by comparison.The PIL library can help us achieve this process.
 
@@ -238,7 +238,7 @@ Go through reading verification, go to click the corresponding text picture to c
 
 ![word code](./image/word-code.png) 
 
-[get should click words](https://github.com/zlj-zz/anti-crawl_case/tree/master/word_click)
+[get should click words](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/wordClick)
 
 Through the demo, you can get the text that you want to click, and then the text in the image is recognized to click. We can use OCR optical detection, but the experiment proves that the accuracy is not high, and we have other options to identify through deep learning target detection Text.
 

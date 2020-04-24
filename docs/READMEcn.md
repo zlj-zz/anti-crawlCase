@@ -43,7 +43,7 @@ print(response.status_code)
 
 可以通过网络分析查看 `data` 中数据参数,解析加密的过程,用相同的加密方式加密,获得正确的签名验证.
 
-案例:[有道翻译验证](https://github.com/zlj-zz/python_/blob/master/anti-crawl_practice/youdao/youdao.py) 
+案例:[有道翻译验证](https://github.com/zlj-zz/Anti-crawlCase/blob/master/cases/youdao/youdao.py)
 
 Youdao web translation signature verifivation bypass case.
 
@@ -100,13 +100,13 @@ Youdao web translation signature verifivation bypass case.
 图片伪装是指将带有文字的图片和正常的文字混合在一起,达到混淆的效果.它不会影响用户获取信息,但可以让爬虫拿不到真正的数据.
 
 ##### 绕过
-[用户信息爬取案例](https://github.com/zlj-zz/anti-crawl_case/tree/master/picture_disguise) 
+[用户信息爬取案例](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/pictureDisguise)
 
 #### CSS 偏移反爬虫
 CSS 偏移反爬虫指的是利用 CSS 样式将乱序的文字排版为正常人类阅读理解的顺序.
 
 ##### 绕过
-[获取机票价格案例](https://github.com/zlj-zz/anti-crawl_case/tree/master/css_offset) 
+[获取机票价格案例](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/CSSOffset)
 
 ![css-caset](./image/cssDemo.png) 
 
@@ -114,7 +114,7 @@ CSS 偏移反爬虫指的是利用 CSS 样式将乱序的文字排版为正常�
 SVG 是用于描述二位矢量图形的一种图形格式.它基于 xml 描述图形,对图形进行缩放操作都不会i影响图形质量,这个特性导致矢量图被广泛应用与 web 网站中.
 
 ##### 绕过
-[爬取联系电话案例](https://github.com/zlj-zz/anti-crawl_case/tree/master/SVG_map) 
+[爬取联系电话案例](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/SVGmap) 
 
 ![SVG-map](./image/SVG-case.png) 
 #### 字体反爬虫
@@ -127,7 +127,7 @@ pip install fonttools
 XML 文件中保存的是字形坐标信息,我们无法直接获取结果.可以使用在线字体编辑器查看.
 
 ##### 绕过
-[字体反爬虫案例](https://github.com/zlj-zz/anti-crawl_case/tree/master/font_anti-crawl) 
+[字体反爬虫案例](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/fontAnti-crawl) 
 
 #### 文本混淆反爬虫通用解决方法
 当我们面对不同文本文本混淆反爬虫时,需要重新分析.如果每一次都要分析,那么开发者会付出很多时间成本.这时我们可以使用光学字符识别 OCR 来帮我们解决文本混淆问题.
@@ -187,14 +187,16 @@ client.execute_script(script)
 ###### 绕过
 ![demo](./image/charDemo.png) 
 
-[character_verify](https://github.com/zlj-zz/anti-crawl_case/tree/master/character_verify) 使用 PyTesseract 光学图像识别,但其精确度有限.除此之外我们还可以使用深度学习的卷积神经网络训练图像识别模型,使用训练好的模型帮助我们识别,精确度通常高于 PyTesseract.
+[character verify](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/characterVerify)
+
+使用 PyTesseract 光学图像识别,但其精确度有限.除此之外我们还可以使用深度学习的卷积神经网络训练图像识别模型,使用训练好的模型帮助我们识别,精确度通常高于 PyTesseract.
 
 #### 计算型验证码
 计算型验证码实在字符验证码的基础上增加了数学运算,它也是将人类视觉和计算机视觉的差异作为区分用户的依据.
 
 ##### 绕过
 
-[calculation-vrify](https://github.com/zlj-zz/anti-crawl_case/tree/master/calculation_vrify) 
+[calculation-vrify](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/calculationVrify) 
 
 Calculation validation bypas case.
 
@@ -211,7 +213,7 @@ pip install pytesseract
 
 ##### 绕过
 
-[slide-verify](https://github.com/zlj-zz/anti-crawl_case/tree/master/slide_vrify) 
+[slide-verify](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/slideVrify) 
 
     Slider validation bypass case.
 
@@ -224,14 +226,14 @@ pip install pytesseract
 
 #### 绕过
 
-[slide_jigsaw](https://github.com/zlj-zz/anti-crawl_case/tree/master/slide_jigsaw) 
+[slide jigsaw](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/slideJigsaw) 
 
 demo 1 的案例中,目标块使用单独的 div ,这样可以在源码中提取出来,计算获得移动距离.如果将缺口融入到背景之中,那么就可以给爬虫工程师增加难度.在 demo 2 中我们就实现的方式.面对这种情况我们可以使用截图的手段获取前后图片,通过对比获取缺口位置, PIL 库可以帮我们实现这一过程.
 
 #### 文字点选验证码
 通过阅读验证要去,去点击对应的文字图片完成验证,这是一种比滑动验证码更难的验证码.
 
-[get should click words](https://github.com/zlj-zz/anti-crawl_case/tree/master/word_click) 
+[get should click words](https://github.com/zlj-zz/Anti-crawlCase/tree/master/cases/wordClick) 
 
 通过 demo 可以获取到要求点击的文字,接着就是识别图像中的文字进行点击.我们可以使用 OCR 光学检测,但实验证明准确率并不高,我们还有其他选择就是通过深度学习的目标检测来识别文字.
 
