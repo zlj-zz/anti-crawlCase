@@ -1,5 +1,7 @@
-## Anti-crawl technology introduction and simple bypass examples
+# Python Crawler
 
-Including text verification, dynamic rendering, text obfuscation, feature recognition, and verification code.
+This projects is related to crawlers.
 
-Read the `docs` in detail, and code in `cases`.
+Such as: anti-crawl and bypass cases, crawler cases, crawler tools.
+
+Hope you can find what you want and help you.
