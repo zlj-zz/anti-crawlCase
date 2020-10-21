@@ -2,6 +2,7 @@ import re
 import requests
 import subprocess
 import time
+import pprint
 from lxml import etree
 
 
@@ -86,27 +87,68 @@ class FictionDownloader():
             err = None
         return data, err, p.returncode
 
-    def get_fiction_page(self, url):
+    def get_fiction_page(self, web_name: str, url: str):
         _url = self.parse_baidu_link_url(url)
         if _url[0]:
             _url = re.search(r'(http.*?)\"', _url[0].decode())[1]
             print(f'===> True url: {_url}')
+            self.fiction_url = _url
         else:
             print("can't parse url, will quit.")
             exit(1)
-        resp = self.get_response(_url, self.headers)
-        print(type(resp))
-        return resp
 
-    def parse_page_get_donwload_url(self, resp):
-        print('Parse page:')
-        resp = str(resp, encoding='utf-8')
-        print((resp))
-        ret = re.findall(r'<a.*?href=\"(.*?)\".*?下载.*?</a>', resp, re.M)
-        ret1 = re.findall(r'<a .*?onclick=\"(.*?)\".*?下载.*?</a>', resp, re.M)
-        print(ret, ret1)
-        # TODO: process logic not complete <20-10-20, yourname> #
-        return ret, ret1
+        print('\nStart requset url', end='')
+        resp = None
+        for i in range(3):
+            try:
+                resp = self.get_response(_url, self.headers)
+                print(' [ok]\n')
+                print(type(resp))
+                break
+            except Exception as e:
+                print(f'\rFaild, try {i + 1} time.', end='')
+                time.sleep(10)
+                continue
+        if resp:
+            return web_name, resp
+        else:
+            exit(1)
+
+    def parse_page_get_donwload_url(self, name: str, resp):
+        print(f'Parse page is {name}:')
+        # resp = str(resp, encoding='utf-8')
+        pprint.pprint(resp)
+
+        if '键盘小说网' in name:
+            resp = str(resp, encoding='utf-8')
+            ret = re.findall(r'<a.*?onClick=\"(.*?)\".*?下载.*?</a>', resp, re.M)
+            url = re.search(r"(http://.*?)\'", ret[0])[1]
+            print(f'===> Got download url: {url}')
+            return url
+        elif '蚂蚁电子书' in name:
+            resp = str(resp, encoding='utf-8')
+            ret = re.findall(r'<a.*?href=\"(.*?)\".*?下载.*?</a>', resp, re.M)
+            url = ret[0]
+            print(f'===> Got download url: {url}')
+            return url
+        elif '纵横中文网' in name:
+            print('The site not allowed download')
+            exit(0)
+        elif '笔下文学' in name:
+            resp = str(resp)
+            bookid = re.search(r'(bookid=\d+)', resp, re.M)[1]
+            txtkey = re.search(r'(&txtkey=[a-z|0-9]+)', resp, re.M)[1]
+            sourc_url = re.search(r'(http://.*?)\/', self.fiction_url)[1]
+            # print(sourc_url, bookid, txtkey)
+            url = ('http://m.bxwx666.org' + '/download.sapx?' + bookid +
+                   txtkey)
+            print(f'===> Got download url: {url}')
+            return url
+        else:
+
+            pass
+            exit(1)
+        # # TODO: process logic not complete <20-10-20, yourname> #
 
     def download(self, url):
         print('\n Start download:')
@@ -133,9 +175,9 @@ class FictionDownloader():
                     break
                 except Exception as e:
                     continue
-        resp = self.get_fiction_page(r[num][1])
-        ret, ret1 = self.parse_page_get_donwload_url(resp)
-        self.download(ret[0])
+        name, resp = self.get_fiction_page(r[num][0], r[num][1])
+        download_url = self.parse_page_get_donwload_url(name, resp)
+        self.download(download_url)
 
 
 if __name__ == '__main__':
