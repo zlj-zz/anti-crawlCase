@@ -56,12 +56,6 @@ class Spider(object):
     async def save_data(self, data):
         logging.info('saving data %s', data)
 
-
-#       if data:
-# return await collection.update_one({'id': data.get('id')},
-# {'$set': data},
-#                                              upsert=True)
-
     async def main(self):
         self.session = aiohttp.ClientSession()
         # index tasks
@@ -82,6 +76,7 @@ class Spider(object):
         ]
         await asyncio.wait(scrape_detail_tasks)
         await self.session.close()
+
 
 if __name__ == '__main__':
     spider = Spider()
