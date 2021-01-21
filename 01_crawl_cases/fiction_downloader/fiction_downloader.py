@@ -35,7 +35,7 @@ class FictionDownloader():
                 'https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E9%BE%99%E7%AC%A6%20%E4%B8%8B%E8%BD%BD&oq=requsets%2520https&rsv_pq=b793ec400001142b&rsv_t=566bNOXLrpw6uc1PZ8Olwt8M16V728piElQluc2o6knPadylZtUOVdbYZyI&rqlang=cn',
         }
 
-        self.search_url = 'https://www.baidu.com/s?ie=utf-8&mod=1&isid=6A8BCCA443C96435&ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E9%BE%99%E7%AC%A6%20%E4%B8%8B%E8%BD%BD&oq=%25E9%25BE%2599%25E7%25AC%25A6%2520%25E4%25B8%258B%25E8%25BD%25BD&rsv_pq=c73a3e87000254a8&rsv_t=26423%2BjJJBDy%2FhH%2FCJU9hAmuMbKbCIkbnr%2BUIQK3aBRt71xJRlUnOtP5iqE&rqlang=cn&rsv_dl=tb&rsv_enter=0&rsv_btype=t&bs=%E9%BE%99%E7%AC%A6%20%E4%B8%8B%E8%BD%BD&rsv_sid=undefined&_ss=1&clist=&hsug=&f4s=1&csor=0&_cr1=31293'
+        self.search_url = 'https://www.baidu.com/s?ie=utf-8&mod=1&isid=6A8BCCA443C96435&ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd={}&oq=%25E9%25BE%2599%25E7%25AC%25A6%2520%25E4%25B8%258B%25E8%25BD%25BD&rsv_pq=c73a3e87000254a8&rsv_t=26423%2BjJJBDy%2FhH%2FCJU9hAmuMbKbCIkbnr%2BUIQK3aBRt71xJRlUnOtP5iqE&rqlang=cn&rsv_dl=tb&rsv_enter=0&rsv_btype=t&bs=%E9%BE%99%E7%AC%A6%20%E4%B8%8B%E8%BD%BD&rsv_sid=undefined&_ss=1&clist=&hsug=&f4s=1&csor=0&_cr1=31293'
 
     def get_response(self, url, headers):
         return requests.get(
@@ -47,7 +47,7 @@ class FictionDownloader():
         self.name = name
 
         search_response = requests.get(
-            self.search_url,
+            self.search_url.format(self.name),
             headers=self.search_headers,
         ).content.decode()
 
@@ -62,9 +62,11 @@ class FictionDownloader():
         for i in response_names:
             i = etree.tostring(i, xml_declaration=True,
                                encoding='utf-8').decode()
-            name = re.search(r'>(.*?)</a>',
-                             i)[1].replace('<em>', '').replace('</em>', '')
-            url = re.search(r'href=\"(.*?)\"', i)[1]
+            name_search_result = re.search(r'>(.*?)</a>',i)
+            name = name_search_result[1].replace('<em>', '').replace(
+                '</em>', '') if name_search_result else '[no title]'
+            search_list = re.search(r'href=\"(.*?)\"', i)
+            url = search_list[1] if search_list else '[no url]'
             # print(index, name, url)
             print(
                 f'    {index} - {name.replace("-", "").replace("_", "")} : {url}'
@@ -161,8 +163,8 @@ class FictionDownloader():
                 if chunk:
                     f.write(chunk)
                     sum += len(chunk)
-                    print('\r    downloaded: [{}{}] {}'.format(int(sum / total_size * 100) * '#', 
-                                                               int((1 - sum/total_size) * 100) * '*', 
+                    print('\r    downloaded: [{}{}] {}'.format(int(sum / total_size * 100) * '#',
+                                                               int((1 - sum/total_size) * 100) * '*',
                                                                sum), end='')
         print("\nDownload over")
 
