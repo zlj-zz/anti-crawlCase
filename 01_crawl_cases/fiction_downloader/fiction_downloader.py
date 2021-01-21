@@ -151,16 +151,19 @@ class FictionDownloader():
             exit(1)
         # # TODO: process logic not complete <20-10-20, yourname> #
 
-    def download(self, url):
+    def downloader(self, url):
         print('\n Start download:')
         sum = 0
         resp_stream = requests.get(url, headers=self.headers, stream=True)
+        total_size = int(resp_stream.headers['content-length'])
         with open(self.name + '.txt', 'wb') as f:
             for chunk in resp_stream.iter_content(chunk_size=1024):
                 if chunk:
                     f.write(chunk)
                     sum += len(chunk)
-                    print(f'\r    downloaded: {sum}', end='')
+                    print('\r    downloaded: [{}{}] {}'.format(int(sum / total_size * 100) * '#', 
+                                                               int((1 - sum/total_size) * 100) * '*', 
+                                                               sum), end='')
         print("\nDownload over")
 
     def main(self):
@@ -178,7 +181,7 @@ class FictionDownloader():
                     continue
         name, resp = self.get_fiction_page(r[num][0], r[num][1])
         download_url = self.parse_page_get_donwload_url(name, resp)
-        self.download(download_url)
+        self.downloader(download_url)
 
 
 if __name__ == '__main__':
